@@ -16,9 +16,8 @@ const FeedRoute = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(
-          "https://5e7d0266a917d70016684219.mockapi.io/api/v1/users"
-        );
+        const url = "https://5e7d0266a917d70016684219.mockapi.io/api/v1/users";
+        const response = await fetch(url);
         const data = await response.json();
         setUsersList(data);
       } catch (error) {
@@ -35,9 +34,8 @@ const FeedRoute = () => {
     usersList.map((user) => {
       const fetchUserPosts = async () => {
         try {
-          const response = await fetch(
-            `https://5e7d0266a917d70016684219.mockapi.io/api/v1/users/${user.id}/posts/`
-          );
+          const url = `https://5e7d0266a917d70016684219.mockapi.io/api/v1/users/${user.id}/posts/`;
+          const response = await fetch(url);
           const data = await response.json();
           data.map((item) => {
             setUsersPosts((posts) => [...posts, item]);
@@ -57,9 +55,8 @@ const FeedRoute = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await fetch(
-          `https://5e7d0266a917d70016684219.mockapi.io/api/v1/stories/`
-        );
+        const url = `https://5e7d0266a917d70016684219.mockapi.io/api/v1/stories/`;
+        const response = await fetch(url);
         const data = await response.json();
         setUserStories(data);
       } catch (error) {

@@ -8,12 +8,15 @@ const UsersRoute = () => {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await fetch(
-        "https://5e7d0266a917d70016684219.mockapi.io/api/v1/users"
-      );
-      const data = await response.json();
-      setUsersList(data);
-      setLoadingUsers(false);
+      try {
+        const url = "https://5e7d0266a917d70016684219.mockapi.io/api/v1/users";
+        const response = await fetch(url);
+        const data = await response.json();
+        setUsersList(data);
+        setLoadingUsers(false);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchUsers();
   }, []);

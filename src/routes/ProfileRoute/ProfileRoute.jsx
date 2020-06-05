@@ -12,16 +12,19 @@ const ProfileRoute = () => {
   const [userPosts, setUserPosts] = useState([]);
   const [userInfo, setUserInfo] = useState({});
 
-  const {username} = useParams();
+  const { username } = useParams();
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await fetch(
-        "https://5e7d0266a917d70016684219.mockapi.io/api/v1/users"
-      );
-      const data = await response.json();
-      setUsersList(data);
-      setLoadingUserPosts(false);
+      try {
+        const url = "https://5e7d0266a917d70016684219.mockapi.io/api/v1/users";
+        const response = await fetch(url);
+        const data = await response.json();
+        setUsersList(data);
+        setLoadingUserPosts(false);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchUsers();
   }, []);
@@ -31,11 +34,14 @@ const ProfileRoute = () => {
       if (user.name === username) {
         setUserInfo(user);
         const fetchUserPosts = async () => {
-          const response = await fetch(
-            `https://5e7d0266a917d70016684219.mockapi.io/api/v1/users/${user.id}/posts`
-          );
-          const data = await response.json();
-          setUserPosts(data);
+          try {
+            const url = `https://5e7d0266a917d70016684219.mockapi.io/api/v1/users/${user.id}/posts`;
+            const response = await fetch(url);
+            const data = await response.json();
+            setUserPosts(data);
+          } catch (error) {
+            console.log(error);
+          }
         };
         fetchUserPosts();
       }
