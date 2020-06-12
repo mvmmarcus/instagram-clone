@@ -13,7 +13,7 @@ const Loading = () => (
       <span />
     </div>
 
-    Carregando
+    Loading
   </div>
 );
 
